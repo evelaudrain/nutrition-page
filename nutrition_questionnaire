@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Questionnaire Nutrition + Conseils Personnalisés</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg,#fdd835 0%,#90caf9 100%);
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 520px;
+      margin: 40px auto;
+      background: linear-gradient(120deg,#fffde7 0%,#e3f2fd 100%);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px #b0bec5;
+      padding: 36px 28px 10px 28px;
+      border: 2px solid #ffe082;
+    }
+    h1 {
+      color: #1976d2;
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      text-shadow: 1px 2px 0 #fffde7;
+    }
+    .subtitle {
+      color: #ffb300;
+      text-align: center;
+      font-size: 1.15em;
+      margin-bottom: 26px;
+      font-weight: 600;
+      background: linear-gradient(90deg,#fffde7 80%,#ffe082 120%);
+      padding: 7px 0;
+      border-radius: 8px;
+    }
+    label {
+      font-weight: 500;
+      margin-top: 18px;
+      display: block;
+      color: #1976d2;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 9px;
+      margin-top: 7px;
+      border: 1px solid #90caf9;
+      border-radius: 7px;
+      font-size: 1em;
+      background: #e3f2fd;
+      transition: box-shadow 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      box-shadow: 0 0 6px #ffd54f;
+      outline: none;
+    }
+    input[type="checkbox"], input[type="radio"] {
+      width: auto;
+      margin-right: 7px;
+      vertical-align: middle;
+    }
+    .option-group { margin-top: 8px; }
+    .section {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid #ffe082;
+    }
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95em;
+      margin-bottom: 0;
+      color: #ffa000;
+    }
+    .range-input {
+      width: 100%;
+      margin: 12px 0 0 0;
+      accent-color: #1976d2;
+    }
+    button {
+      margin-top: 22px;
+      padding: 14px 36px;
+      background: linear-gradient(90deg,#1976d2 65%,#ffd54f 100%);
+      color: #fff;
+      font-size: 1.07em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 2px 8px #ffe082;
+      transition: background 0.2s, transform 0.1s;
+    }
+    button:hover {
+      background: linear-gradient(90deg,#1976d2 30%,#ffb300 100%);
+      transform: scale(1.04);
+    }
+    .result-box {
+      margin-top: 28px;
+      background: linear-gradient(120deg,#fffde7 0%,#e3f2fd 100%);
+      padding: 28px 20px 18px 20px;
+      border-radius: 20px;
+      color: #263238;
+      box-shadow: 0 2px 8px #b3e5fc;
+      border: 2px solid #ffd54f;
+      font-size: 1.13em;
+      display: none;
+    }
+    .resume {
+      background: linear-gradient(90deg,#fffde7 80%,#ffe082 120%);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 22px;
+      border: 1px solid #ffd54f;
+      font-size: 1.05em;
+      color: #1976d2;
+      text-align: center;
+      font-weight: 600;
+    }
+    .points {
+      margin-bottom: 24px;
+    }
+    .pf, .am, .cs {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      font-size: 1.05em;
+      border-radius: 7px;
+      padding: 10px 10px 10px 0;
+    }
+    .pf { background: #e8f5e9; border-left: 5px solid #43a047; color: #388e3c;}
+    .am { background: #fff3e0; border-left: 5px solid #ff9800; color: #f57c00;}
+    .cs { background: #e3f2fd; border-left: 5px solid #1976d2; color: #1976d2;}
+    .icon { font-size: 1.5em; margin-right: 10px;}
+    .adsence {
+      margin: 24px 0 18px 0;
+      text-align: center;
+      background: linear-gradient(90deg,#fffde7 80%,#90caf9 120%);
+      border-radius: 8px;
+      padding: 12px 0;
+      border: 1px solid #90caf9;
+      min-height: 120px;
+    }
+    .adsence iframe { border: none; }
+    .aff-links {
+      margin-top: 18px;
+      background: linear-gradient(90deg,#fffde7 70%,#ffe082 120%);
+      padding: 9px 0 7px 0;
+      border-radius: 7px;
+      text-align: center;
+      border: 1px solid #ffd54f;
+    }
+    .aff-links b { color: #1976d2; }
+    .aff-links a {
+      color: #ff9800;
+      text-decoration: underline;
+      margin: 0 6px;
+      font-size: 1em;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .aff-links a:hover { color: #1976d2; }
+    .mini-guide {
+      margin: 30px 0 15px 0;
+      background: linear-gradient(90deg,#e3f2fd 80%,#fffde7 120%);
+      border-radius: 10px;
+      border: 1px solid #90caf9;
+      padding: 18px 16px;
+      text-align: center;
+    }
+    .mini-guide b { color: #1976d2; }
+    .mini-guide a {
+      color: #1976d2;
+      text-decoration: underline;
+      font-weight: 600;
+      font-size: 1.08em;
+    }
+    .footer {
+      margin-top: 40px;
+      color: #78909c;
+      font-size: 1.01em;
+      text-align: center;
+      background: linear-gradient(90deg,#fffde7 70%,#e3f2fd 120%);
+      border-radius: 8px;
+      padding: 8px 0;
+      border: 1px solid #90caf9;
+      letter-spacing: 1px;
+    }
+    .footer a { color: #1976d2; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌞 Nutrition & Énergie !</h1>
+    <div class="subtitle">
+      Découvre des conseils pratiques et reçois des recommandations personnalisées.<br>
+      <b>Remplis le questionnaire ci-dessous :</b>
+    </div>
+    <!-- Questionnaire Nutritionnel -->
+    <form id="nutritionForm">
+      <h2 style="margin-bottom:0;color:#ff9800">Questionnaire nutritionnel</h2>
+      <label>Combien de repas par jour prends-tu ?</label>
+      <select name="repas">
+        <option value="1-2">1 à 2</option>
+        <option value="3">3</option>
+        <option value="4+">4 ou plus</option>
+      </select>
+
+      <label>Quels types d’aliments consommes-tu le plus souvent ?</label>
+      <div class="option-group">
+        <label><input type="checkbox" name="aliments" value="Fruits et légumes">Fruits et légumes</label>
+        <label><input type="checkbox" name="aliments" value="Produits industriels">Produits industriels</label>
+        <label><input type="checkbox" name="aliments" value="Viandes">Viandes</label>
+        <label><input type="checkbox" name="aliments" value="Céréales complètes">Céréales complètes</label>
+        <label><input type="checkbox" name="aliments" value="Snacks/sucreries">Snacks/sucreries</label>
+        <label><input type="checkbox" name="aliments" value="Légumes surgelés">Légumes surgelés</label>
+      </div>
+
+      <label>Consommes-tu des boissons sucrées ?</label>
+      <select name="boissons">
+        <option value="jamais">Jamais</option>
+        <option value="parfois">Parfois</option>
+        <option value="souvent">Souvent</option>
+      </select>
+
+      <label>Combien de verres d’eau bois-tu par jour ?</label>
+      <select name="eau">
+        <option value="moins4">Moins de 4</option>
+        <option value="4-8">4 à 8</option>
+        <option value="plus8">Plus de 8</option>
+      </select>
+
+      <div class="section">
+        <label>Pratiques-tu une activité physique ?</label>
+        <select name="sport">
+          <option value="aucune">Aucune</option>
+          <option value="occasionnelle">Occasionnellement (1-2 fois/semaine)</option>
+          <option value="reguliere">Régulièrement (
