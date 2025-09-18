@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Questionnaire Nutrition + Conseils Personnalisés</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg,#fdd835 0%,#90caf9 100%);
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 520px;
+      margin: 40px auto;
+      background: linear-gradient(120deg,#fffde7 0%,#e3f2fd 100%);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px #b0bec5;
+      padding: 36px 28px 10px 28px;
+      border: 2px solid #ffe082;
+    }
+    h1 {
+      color: #1976d2;
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      text-shadow: 1px 2px 0 #fffde7;
+    }
+    .subtitle {
+      color: #ffb300;
+      text-align: center;
+      font-size: 1.15em;
+      margin-bottom: 26px;
+      font-weight: 600;
+      background: linear-gradient(90deg,#fffde7 80%,#ffe082 120%);
+      padding: 7px 0;
+      border-radius: 8px;
+    }
+    label {
+      font-weight: 500;
+      margin-top: 18px;
+      display: block;
+      color: #1976d2;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 9px;
+      margin-top: 7px;
+      border: 1px solid #90caf9;
+      border-radius: 7px;
+      font-size: 1em;
+      background: #e3f2fd;
+      transition: box-shadow 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      box-shadow: 0 0 6px #ffd54f;
+      outline: none;
+    }
+    input[type="checkbox"], input[type="radio"] {
+      width: auto;
+      margin-right: 7px;
+      vertical-align: middle;
+    }
+    .option-group { margin-top: 8px; }
+    .section {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid #ffe082;
+    }
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95em;
+      margin-bottom: 0;
+      color: #ffa000;
+    }
+    .range-input {
+      width: 100%;
+      margin: 12px 0 0 0;
+      accent-color: #1976d2;
+    }
+    button {
+      margin-top: 22px;
+      padding: 14px 36px;
+      background: linear-gradient(90deg,#1976d2 65%,#ffd54f 100%);
+      color: #fff;
+      font-size: 1.07em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 2px 8px #ffe082;
+      transition: background 0.2s, transform 0.1s;
+    }
+    button:hover {
+      background: linear-gradient(90deg,#1976d2 30%,#ffb300 100%);
+      transform: scale(1.04);
+    }
+    .result-box {
+      margin-top: 28px;
+      background: linear-gradient(120deg,#fffde7 0%,#e3f2fd 100%);
+      padding: 28px 20px 18px 20px;
+      border-radius: 20px;
+      color: #263238;
+      box-shadow: 0 2px 8px #b3e5fc;
+      border: 2px solid #ffd54f;
+      font-size: 1.13em;
+      display: none;
+    }
+    .resume {
+      background: linear-gradient(90deg,#fffde7 80%,#ffe082 120%);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 22px;
+      border: 1px solid #ffd54f;
+      font-size: 1.05em;
+      color: #1976d2;
+      text-align: center;
+      font-weight: 600;
+    }
+    .points {
+      margin-bottom: 24px;
+    }
+    .pf, .am, .cs {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      font-size: 1.05em;
+      border-radius: 7px;
+      padding: 10px 10px 10px 0;
+    }
+    .pf { background: #e8f5e9; border-left: 5px solid #43a047; color: #388e3c;}
+    .am { background: #fff3e0; border-left: 5px solid #ff9800; color: #f57c00;}
+    .cs { background: #e3f2fd; border-left: 5px solid #1976d2; color: #1976d2;}
+    .icon { font-size: 1.5em; margin-right: 10px;}
+    .adsence {
+      margin: 24px 0 18px 0;
+      text-align: center;
+      background: linear-gradient(90deg,#fffde7 80%,#90caf9 120%);
+      border-radius: 8px;
+      padding: 12px 0;
+      border: 1px solid #90caf9;
+      min-height: 120px;
+    }
+    .adsence iframe { border: none; }
+    .aff-links {
+      margin-top: 18px;
+      background: linear-gradient(90deg,#fffde7 70%,#ffe082 120%);
+      padding: 9px 0 7px 0;
+      border-radius: 7px;
+      text-align: center;
+      border: 1px solid #ffd54f;
+    }
+    .aff-links b { color: #1976d2; }
+    .aff-links a {
+      color: #ff9800;
+      text-decoration: underline;
+      margin: 0 6px;
+      font-size: 1em;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .aff-links a:hover { color: #1976d2; }
+    .mini-guide {
+      margin: 30px 0 15px 0;
+      background: linear-gradient(90deg,#e3f2fd 80%,#fffde7 120%);
+      border-radius: 10px;
+      border: 1px solid #90caf9;
+      padding: 18px 16px;
+      text-align: center;
+    }
+    .mini-guide b { color: #1976d2; }
+    .mini-guide a {
+      color: #1976d2;
+      text-decoration: underline;
+      font-weight: 600;
+      font-size: 1.08em;
+    }
+    .footer {
+      margin-top: 40px;
+      color: #78909c;
+      font-size: 1.01em;
+      text-align: center;
+      background: linear-gradient(90deg,#fffde7 70%,#e3f2fd 120%);
+      border-radius: 8px;
+      padding: 8px 0;
+      border: 1px solid #90caf9;
+      letter-spacing: 1px;
+    }
+    .footer a { color: #1976d2; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌞 Nutrition & Énergie !</h1>
+    <div class="subtitle">
+      Découvre des conseils pratiques et reçois des recommandations personnalisées.<br>
+      <b>Remplis le questionnaire ci-dessous :</b>
+    </div>
+    <!-- Questionnaire Nutritionnel -->
+    <form id="nutritionForm">
+      <h2 style="margin-bottom:0;color:#ff9800">Questionnaire nutritionnel</h2>
+      <label>Combien de repas par jour prends-tu ?</label>
+      <select name="repas">
+        <option value="1-2">1 à 2</option>
+        <option value="3">3</option>
+        <option value="4+">4 ou plus</option>
+      </select>
+
+      <label>Quels types d’aliments consommes-tu le plus souvent ?</label>
+      <div class="option-group">
+        <label><input type="checkbox" name="aliments" value="Fruits et légumes">Fruits et légumes</label>
+        <label><input type="checkbox" name="aliments" value="Produits industriels">Produits industriels</label>
+        <label><input type="checkbox" name="aliments" value="Viandes">Viandes</label>
+        <label><input type="checkbox" name="aliments" value="Céréales complètes">Céréales complètes</label>
+        <label><input type="checkbox" name="aliments" value="Snacks/sucreries">Snacks/sucreries</label>
+        <label><input type="checkbox" name="aliments" value="Légumes surgelés">Légumes surgelés</label>
+      </div>
+
+      <label>Consommes-tu des boissons sucrées ?</label>
+      <select name="boissons">
+        <option value="jamais">Jamais</option>
+        <option value="parfois">Parfois</option>
+        <option value="souvent">Souvent</option>
+      </select>
+
+      <label>Combien de verres d’eau bois-tu par jour ?</label>
+      <select name="eau">
+        <option value="moins4">Moins de 4</option>
+        <option value="4-8">4 à 8</option>
+        <option value="plus8">Plus de 8</option>
+      </select>
+
+      <div class="section">
+        <label>Pratiques-tu une activité physique ?</label>
+        <select name="sport">
+          <option value="aucune">Aucune</option>
+          <option value="occasionnelle">Occasionnellement (1-2 fois/semaine)</option>
+          <option value="reguliere">Régulièrement (3 fois/semaine ou +)</option>
+        </select>
+      </div>
+
+      <div class="section">
+        <label>Combien d’heures dors-tu en moyenne par nuit ?</label>
+        <select name="sommeil">
+          <option value="moins6">Moins de 6h</option>
+          <option value="6-8">6 à 8h</option>
+          <option value="plus8">Plus de 8h</option>
+        </select>
+        <label>As-tu des allergies ou intolérances alimentaires ? (facultatif)</label>
+        <input type="text" name="allergies" placeholder="Ex : gluten, lactose…">
+      </div>
+
+      <div class="section">
+        <label>Évalue ton niveau de stress général :</label>
+        <div class="range-labels">
+          <span>Faible</span>
+          <span>Moyen</span>
+          <span>Élevé</span>
+        </div>
+        <input type="range" name="stress" min="1" max="5" value="3" class="range-input">
+      </div>
+
+      <div class="section">
+        <label>Quel est ton objectif principal ?</label>
+        <select name="objectif">
+          <option value="energie">Avoir plus d’énergie</option>
+          <option value="poids">Perdre du poids</option>
+          <option value="masse">Prendre de la masse</option>
+          <option value="sante">Améliorer ma santé globale</option>
+        </select>
+        <label>Autre objectif ou remarque : (facultatif)</label>
+        <textarea name="remarque" rows="2" placeholder="Écris ce que tu veux améliorer…"></textarea>
+      </div>
+      <button type="submit">Obtenir mes conseils personnalisés</button>
+    </form>
+
+    <!-- Résultat personnalisé -->
+    <div class="result-box" id="resultBox">
+      <!-- Le JS mettra ici le contenu personnalisé -->
+    </div>
+
+    <!-- Bloc AdSense -->
+    <div class="adsence">
+      <!-- Placez ici votre code AdSense réel -->
+      <iframe src="https://ads.google.com/" width="320" height="100"></iframe>
+    </div>
+
+    <!-- Liens d'affiliation -->
+    <div class="aff-links">
+      <b>Produits recommandés :</b>
+      <a href="https://www.amazon.fr/dp/B07XYZ" target="_blank">Mixeur santé</a>
+      <a href="https://www.amazon.fr/dp/B08ABC" target="_blank">Vitamines naturelles</a>
+      <a href="https://www.amazon.fr/dp/B09LMN" target="_blank">Livre de recettes minceur</a>
+    </div>
+
+    <!-- Mini-guide par email -->
+    <div class="mini-guide">
+      <b>Recevez votre mini-guide nutrition GRATUIT !</b><br>
+      <span>Demandez-le simplement à :</span><br>
+      <a href="mailto:votremail@email.fr?subject=Demande mini-guide nutrition">votremail@email.fr</a>
+    </div>
+
+    <div class="footer">
+      © 2025 VotreNutritionPro — <a href="mailto:votremail@email.fr">Contact</a>
+    </div>
+  </div>
+  <script>
+    // Questionnaire nutritionnel
+    function getAlimentsChecked(form) {
+      const aliments = [];
+      const checkboxes = form.querySelectorAll('input[name="aliments"]:checked');
+      checkboxes.forEach(cb => aliments.push(cb.value));
+      return aliments;
+    }
+    document.getElementById('nutritionForm').onsubmit = function(e) {
+      e.preventDefault();
+      const form = this;
+      const repas = form.repas.value;
+      const aliments = getAlimentsChecked(form);
+      const boissons = form.boissons.value;
+      const eau = form.eau.value;
+      const sport = form.sport.value;
+      const sommeil = form.sommeil.value;
+      const allergies = form.allergies.value.trim();
+      const stress = form.stress.value;
+      const objectif = form.objectif.value;
+      const remarque = form.remarque.value.trim();
+
+      // Résumé personnalisé
+      let resume = '';
+      let pointsFort = [], aAmeliorer = [], conseils = [];
+
+      // Point fort repas
+      if(repas === "3") pointsFort.push({icon:"🍽️",txt:"Tu as un rythme régulier de repas, c’est idéal !"});
+      else if(repas === "4+") pointsFort.push({icon:"🍽️",txt:"Tes collations te permettent de mieux gérer ta faim."});
+      else aAmeliorer.push({icon:"🍽️",txt:"Essaie de répartir tes repas sur la journée pour plus d’énergie."});
+
+      // Aliments
+      if(aliments.includes("Fruits et légumes")) pointsFort.push({icon:"🍏",txt:"Bravo, tu consommes des fruits et légumes !" });
+      if(aliments.includes("Céréales complètes")) pointsFort.push({icon:"🌾",txt:"Les céréales complètes te donnent de la satiété et de l’énergie."});
+      if(aliments.includes("Légumes surgelés")) pointsFort.push({icon:"🥦",txt:"Les légumes surgelés sont une bonne alternative pratique."});
+      if(aliments.includes("Viandes")) pointsFort.push({icon:"🍗",txt:"Bonne source de protéines ! Varie les types pour équilibrer."});
+      if(aliments.includes("Produits industriels")) aAmeliorer.push({icon:"🥫",txt:"Réduis les produits industriels, privilégie le fait-maison."});
+      if(aliments.includes("Snacks/sucreries")) aAmeliorer.push({icon:"🍬",txt:"Diminue les snacks/sucreries, remplace-les par des fruits ou oléagineux."});
+      if(aliments.length==0) aAmeliorer.push({icon:"🍽️",txt:"Pense à diversifier ton alimentation chaque semaine."});
+
+      // Boissons sucrées
+      if(boissons=="jamais") pointsFort.push({icon:"💧",txt:"Tu privilégies l’eau, c’est excellent !"});
+      else if(boissons=="parfois") conseils.push({icon:"🥤",txt:"Bien ! Essaie de limiter encore les boissons sucrées."});
+      else aAmeliorer.push({icon:"🥤",txt:"Diminue ta consommation de boissons sucrées, préfère l’eau ou les infusions."});
+
+      // Eau
+      if(eau=="moins4") aAmeliorer.push({icon:"💧",txt:"Augmente ta consommation d’eau : vise au moins 4 à 8 verres/jour."});
+      else if(eau=="4-8") pointsFort.push({icon:"💧",txt:"Bonne hydratation, continue comme ça !"});
+      else pointsFort.push({icon:"💧",txt:"Parfait, continue à bien t’hydrater !"});
+
+      // Sport
+      if(sport=="aucune") aAmeliorer.push({icon:"🏃‍♂️",txt:"Essaie d’intégrer une activité physique régulière, même légère."});
+      else if(sport=="occasionnelle") conseils.push({icon:"🏃‍♂️",txt:"Augmente progressivement ton activité physique."});
+      else pointsFort.push({icon:"🏃‍♂️",txt:"Bravo pour ta régularité sportive !"});
+
+      // Sommeil
+      if(sommeil=="moins6") aAmeliorer.push({icon:"😴",txt:"Améliore ta qualité et durée de sommeil : vise 7h ou plus par nuit."});
+      else if(sommeil=="6-8") pointsFort.push({icon:"😴",txt:"Bonne durée de sommeil, continue à bien dormir."});
+      else pointsFort.push({icon:"😴",txt:"Super ! Un bon sommeil favorise la récupération et la santé."});
+
+      // Allergies
+      if(allergies) conseils.push({icon:"⚠️",txt:`Attention à tes allergies ou intolérances alimentaires (${allergies}) : adapte ton alimentation.`});
+
+      // Stress
+      if(stress<=2) pointsFort.push({icon:"🧘‍♂️",txt:"Ton niveau de stress est faible, continue à prendre soin de toi."});
+      else if(stress==3) conseils.push({icon:"🧘‍♂️",txt:"Pense à des activités relaxantes (sport, méditation, sorties…)"});
+      else aAmeliorer.push({icon:"😟",txt:"Ton niveau de stress est élevé : trouve du temps pour toi, demande de l’aide si besoin."});
+
+      // Objectif
+      if(objectif=="energie") conseils.push({icon:"⚡",txt:"Pour plus d’énergie : équilibre tes repas, hydrate-toi et dors suffisamment."});
+      else if(objectif=="poids") conseils.push({icon:"⚖️",txt:"Pour perdre du poids : surveille les portions, évite le grignotage, augmente ton activité."});
+      else if(objectif=="masse") conseils.push({icon:"💪",txt:"Pour prendre de la masse : augmente tes apports en protéines et pratique la musculation."});
+      else conseils.push({icon:"✨",txt:"Pour ta santé globale : varie ton alimentation, bouge et dors bien."});
+
+      // Remarque utilisateur
+      if(remarque) conseils.push({icon:"📝",txt:`Conseil spécifique : "${remarque}" – mets en place une action concrète chaque semaine.`});
+
+      // Conseil universel sur la satiété
+      conseils.push({icon:"⏲️",txt:"Astuce : prends le temps de manger ! La satiété apparaît au bout de 20 minutes, manger lentement aide à mieux ressentir la satiété et à éviter de trop manger."});
+
+      // Génération du résumé principal
+      if(pointsFort.length>=3 && aAmeliorer.length<=2) resume = "Bravo ! Ton alimentation montre déjà de bons réflexes, continue comme ça et progresse sur les petits points à améliorer.";
+      else if(pointsFort.length==0 && aAmeliorer.length>=3) resume = "Tu as des axes prioritaires à travailler : commence par les conseils orange puis applique les astuces.";
+      else resume = "Tu as déjà des points forts ! Voici tes axes d’amélioration et des conseils pour aller plus loin.";
+
+      // Génération du HTML
+      let html = `<div class="resume">${resume}</div><div class="points">`;
+      pointsFort.forEach(pt=>{html+=`<div class="pf"><span class="icon">${pt.icon}</span><span>${pt.txt}</span></div>`;});
+      aAmeliorer.forEach(pt=>{html+=`<div class="am"><span class="icon">${pt.icon}</span><span>${pt.txt}</span></div>`;});
+      conseils.forEach(pt=>{html+=`<div class="cs"><span class="icon">${pt.icon}</span><span>${pt.txt}</span></div>`;});
+      html += "</div>";
+
+      // Affichage
+      document.getElementById('resultBox').innerHTML = html;
+      document.getElementById('resultBox').style.display = "block";
+      form.style.display = "none";
+      window.scrollTo({top: document.getElementById('resultBox').offsetTop - 30, behavior: "smooth"});
+    }
+  </script>
+</body>
+</html>
