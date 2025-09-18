@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Vos conseils nutrition personnalisés</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg,#fdd835 0%,#90caf9 100%);
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 520px;
+      margin: 44px auto;
+      background: linear-gradient(120deg,#fffde7 0%,#e3f2fd 100%);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px #b0bec5;
+      padding: 36px 28px 10px 28px;
+      border: 2px solid #ffe082;
+    }
+    h1 {
+      color: #1976d2;
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      text-shadow: 1px 2px 0 #fffde7;
+    }
+    .subtitle {
+      color: #ffb300;
+      text-align: center;
+      font-size: 1.15em;
+      margin-bottom: 24px;
+      font-weight: 600;
+      background: linear-gradient(90deg,#fffde7 80%,#ffe082 120%);
+      padding: 7px 0;
+      border-radius: 8px;
+    }
+    .resume {
+      background: linear-gradient(90deg,#fffde7 80%,#ffe082 120%);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 22px;
+      border: 1px solid #ffd54f;
+      font-size: 1.05em;
+      color: #1976d2;
+      text-align: center;
+      font-weight: 600;
+    }
+    .points {
+      margin-bottom: 24px;
+    }
+    .pf, .am, .cs {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      font-size: 1.05em;
+      border-radius: 7px;
+      padding: 10px 10px 10px 0;
+    }
+    .pf { background: #e8f5e9; border-left: 5px solid #43a047; color: #388e3c;}
+    .am { background: #fff3e0; border-left: 5px solid #ff9800; color: #f57c00;}
+    .cs { background: #e3f2fd; border-left: 5px solid #1976d2; color: #1976d2;}
+    .icon { font-size: 1.5em; margin-right: 10px;}
+    .adsence {
+      margin: 24px 0 18px 0;
+      text-align: center;
+      background: linear-gradient(90deg,#fffde7 80%,#90caf9 120%);
+      border-radius: 8px;
+      padding: 12px 0;
+      border: 1px solid #90caf9;
+      min-height: 120px;
+    }
+    .adsence iframe { border: none; }
+    .aff-links {
+      margin-top: 18px;
+      background: linear-gradient(90deg,#fffde7 70%,#ffe082 120%);
+      padding: 9px 0 7px 0;
+      border-radius: 7px;
+      text-align: center;
+      border: 1px solid #ffd54f;
+    }
+    .aff-links b { color: #1976d2; }
+    .aff-links a {
+      color: #ff9800;
+      text-decoration: underline;
+      margin: 0 6px;
+      font-size: 1em;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .aff-links a:hover { color: #1976d2; }
+    .mini-guide {
+      margin: 30px 0 15px 0;
+      background: linear-gradient(90deg,#e3f2fd 80%,#fffde7 120%);
+      border-radius: 10px;
+      border: 1px solid #90caf9;
+      padding: 18px 16px;
+      text-align: center;
+    }
+    .mini-guide b { color: #1976d2; }
+    .mini-guide a {
+      color: #1976d2;
+      text-decoration: underline;
+      font-weight: 600;
+      font-size: 1.08em;
+    }
+    .footer {
+      margin-top: 40px;
+      color: #78909c;
+      font-size: 1.01em;
+      text-align: center;
+      background: linear-gradient(90deg,#fffde7 70%,#e3f2fd 120%);
+      border-radius: 8px;
+      padding: 8px 0;
+      border: 1px solid #90caf9;
+      letter-spacing: 1px;
+    }
+    .footer a { color: #1976d2; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🥇 Vos conseils nutrition personnalisés</h1>
+    <div class="subtitle">
+      Résumé personnalisé selon vos réponses au questionnaire<br>
+      <span style="font-size:1.05em;">Prenez soin de vous &amp; progressez chaque semaine !</span>
+    </div>
+
+    <div class="resume">
+      <span>Bravo ! Votre alimentation montre déjà de bons réflexes, mais vous pouvez encore progresser sur certains points.</span>
+    </div>
+
+    <div class="points">
+      <div class="pf"><span class="icon">🍏</span><span>Point fort : Vous consommez régulièrement des fruits et légumes, c’est excellent pour la vitalité !</span></div>
+      <div class="pf"><span class="icon">💧</span><span>Hydratation : Votre consommation d’eau est correcte. Continuez à vous hydrater !</span></div>
+      <div class="am"><span class="icon">🥤</span><span>À améliorer : Diminuez les boissons sucrées. Privilégiez l’eau ou les infusions.</span></div>
+      <div class="am"><span class="icon">🏃‍♂️</span><span>À améliorer : Pratiquez une activité physique plus régulière pour booster votre énergie.</span></div>
+      <div class="cs"><span class="icon">🧘‍♂️</span><span>Conseil : Essayez des activités relaxantes pour mieux gérer votre stress.</span></div>
+      <div class="cs"><span class="icon">⏲️</span><span>Astuce : Mangez lentement ! La satiété arrive au bout de 20 min, cela aide à mieux contrôler les quantités.</span></div>
+    </div>
+
+    <div class="adsence">
+      <!-- Placez ici votre code AdSense réel -->
+      <iframe src="https://ads.google.com/" width="320" height="100"></iframe>
+    </div>
+
+    <div class="aff-links">
+      <b>Produits recommandés :</b>
+      <a href="https://www.amazon.fr/dp/B07XYZ" target="_blank">Mixeur santé</a>
+      <a href="https://www.amazon.fr/dp/B08ABC" target="_blank">Vitamines naturelles</a>
+      <a href="https://www.amazon.fr/dp/B09LMN" target="_blank">Livre de recettes minceur</a>
+    </div>
+
+    <div class="mini-guide">
+      <b>Recevez votre mini-guide nutrition GRATUIT !</b><br>
+      <span>Demandez-le simplement à :</span><br>
+      <a href="mailto:votremail@email.fr?subject=Demande mini-guide nutrition">votremail@email.fr</a>
+    </div>
+
+    <div class="footer">
+      © 2025 VotreNutritionPro — <a href="mailto:votremail@email.fr">Contact</a>
+    </div>
+  </div>
+</body>
+</html>
